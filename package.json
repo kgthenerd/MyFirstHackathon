@@ -1,0 +1,23 @@
+{
+  "name": "where-is-my-driver",
+  "version": "1.0.0",
+  "description": "An API to find the nearby drivers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "private"
+  },
+  "author": "Karthik Gopalakrishna",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.6"
+  }
+}
