@@ -27,21 +27,19 @@ exports.update_driver_location = function(req, res) {
 				return false;
 			}
 			if (driver) {
-				console.log('driver found');
 				driver_location.save(function (err, location) {
 					if (err)
 						res.send(err)
-					res.status(200).json({ success: "location saved" });
+					res.status(200).json({});
 				});	
 			} else {
-				console.log('Driver not found');
-				res.status(404).json({ error: "driver not found" });
+				res.status(404).json({});
 			}
 			return true;
 		});
 
 	} else {
-		res.status(422).json({ error: "invalid geo cordinate values" });
+		res.status(422).json({ error: "invalid geo cordinate values, information should be +/- 90 and +/- 180" });
 	}
 };
 
