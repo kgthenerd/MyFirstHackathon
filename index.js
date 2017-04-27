@@ -23,3 +23,9 @@ app.use(function(req, res) {
 app.listen(port);
 
 console.log('This RESTful API has started on:  ' + port);
+
+if (process.env.NODE_ENV !== 'test') {
+  app.use(express.logger());
+}
+
+module.exports = app;
