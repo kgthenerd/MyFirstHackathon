@@ -1,0 +1,131 @@
+swagger: '2.0'
+info:
+  description: This is a test
+  version: 1.0.0
+  title: Simple API for Ride sharing platform
+  # put the contact info for your development or API team
+  contact:
+    email: me@karthikg.xyz
+
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+# all paths will be relative to the basePath specified
+# basePath: /drivers
+
+# tags are used for organizing operations
+tags:
+- name: customers
+  description: Customer applications will use following API to find drivers around a given location
+- name: drivers
+  description: Drivers will send their current location every 60 seconds
+# schemes:
+# - http
+paths:
+  /drivers:
+    get:
+      tags:
+      - customers
+      summary: searches for nearby drivers
+      operationId: searchDrivers
+      description: |
+        Customer applications will use following API to find drivers around a given location
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: latitude
+        description: latitude information
+        required: false
+        type: integer
+        format: int32
+      - in: query
+        name: longitude
+        description: longitude information
+        type: integer
+        format: int32
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+        minimum: 10
+      - in: query
+        name: driver_id
+        description: unique id for the driver
+        type: integer
+        format: int32
+        minimum: 10
+      - in: query
+        name: radius
+        description: minimum search distance for driver
+        type: integer
+        format: int32
+        minimum: 500  
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DriverLocation'
+        400:
+          description: bad input parameter
+    post:
+        tags:
+        - drivers
+        summary: adds driver location
+        operationId: addDriverLocation
+        description: Adds an item to the system
+        consumes:
+        - application/json
+        produces:
+        - application/json
+        parameters:
+        - in: body
+          name: driver_location
+          description: Driver location to add
+          schema:
+            $ref: '#/definitions/DriverLocation'
+        responses:
+          200:
+            description: location saved successfully
+          400:
+            description: request should contain lat and lon information
+          404:
+            description: invalid driver information
+          422:
+            description: invalid geo cordinate values
+definitions:
+  DriverLocation:
+    type: object
+    required:
+    - latitude
+    - longitude
+    - accuracy
+    - driver_id
+    properties:
+      latitude:
+        type: integer
+        format: int32
+        example: +90.0
+      longitude:
+        type: integer
+        format: int32
+        example: -127.554334
+      accuracy:
+        type: integer
+        format: int32
+        example: 0.5
+      driver_id:
+        type: integer
+        format: int32
+        example: 1200
+
+# Added by API Auto Mocking Plugin
+# host: localhost:300
+basePath: /kgthenerd/WhereIsMyDriver/1.0.0
+# Added by API Auto Mocking Plugin
+schemes:
+ - https
