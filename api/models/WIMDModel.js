@@ -8,15 +8,9 @@ var LocationSchema = new Schema({
 	},
 	latitude: {
 		type: Number,
-		validate: function(lat) {
-			return /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/.test(lat);
-		}
 	},
 	longitude: {
 		type: Number,
-		validate: function(lon) {
-			return /\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/.test(lon);
-		}
 	},
 	radius: {
 		type: Number,
