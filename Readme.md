@@ -25,11 +25,17 @@ This API uses a number of open source projects to work properly:
 This API requires [Node.js](https://nodejs.org/) v4+ to run.
 
 Install the dependencies and devDependencies and start the server.
+Make sure you have mongo installed
 
 ```sh
 $ cd WhereIsMyDriver
 $ npm install
 $ node index.js
+```
+
+### Seed database with driver details
+```sh
+mongoimport -d driverdb -c drivers --type csv --file /WhereIsMyDriver/namegen.csv --headerline
 ```
 
 For production environments...
@@ -62,6 +68,8 @@ http://localhost:3000/drivers
  - JWT Stateless auth
  - MOAR Tests
  - Deploy to AWS
+ - Deploy script
+ - Docker Swarm for Autoscling
 
 License
 ----
