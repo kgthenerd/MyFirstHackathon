@@ -30,10 +30,10 @@ exports.update_driver_location = function(req, res) {
 				driver_location.save(function (err, location) {
 					if (err)
 						res.send(err)
-					res.status(200).json({});
+					return res.status(200).json({});
 				});	
 			} else {
-				res.status(404).json({});
+				return res.status(404).json({});
 			}
 			return true;
 		});
@@ -45,7 +45,6 @@ exports.update_driver_location = function(req, res) {
 
 function isMatch(lat, lon) {
 	var data = lat + ',' + lon;
-	console.log(data);
 	var exp = new RegExp(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/);
 	return exp.test(data);
 }
