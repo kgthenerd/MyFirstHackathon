@@ -63,4 +63,7 @@ typings/
 # Visual Studio Code file
 .vscode
 
+# Docker ignore file
+.dockerignore
+
 # End of https://www.gitignore.io/api/node
