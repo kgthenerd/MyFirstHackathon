@@ -1,11 +1,19 @@
 version: '2'
-
 services:
   database:
     image: mongo
     ports:
       - "27017:27017"
+  database-seed:
+    build: ./db-seed
+    links:
+      - "database"
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    depends_on:
+      - "database"
+    command: ["./wait-for-it.sh", "database:27017", "--", "node", "index.js"]
