@@ -37,12 +37,13 @@ paths:
       - in: query
         name: latitude
         description: latitude information
-        required: false
+        required: true
         type: integer
         format: int32
       - in: query
         name: longitude
         description: longitude information
+        required: true
         type: integer
         format: int32
       - in: query
