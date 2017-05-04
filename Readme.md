@@ -35,7 +35,7 @@ $ node index.js
 
 ### Seed database with driver details
 ```sh
-mongoimport -d driverdb -c drivers --type csv --file /WhereIsMyDriver/namegen.csv --headerline
+mongoimport -d driverdb -c drivers --type csv --file /WhereIsMyDriver/db-seed/namegen.csv --headerline
 ```
 
 For production environments...
