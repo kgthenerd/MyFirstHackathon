@@ -1,7 +1,8 @@
 version: 2
 jobs:
-  build:
-    docker:
+  machine:
+    services:
+      - docker
       image: node:6
     working_directory: ~/MyFirstHackathon
     steps:
