@@ -1,8 +1,7 @@
 'use strict';
+var WhereIsMyDriver = require('../controllers/WIMDController');
 
 module.exports = function(app) {
-	var WhereIsMyDriver = require('../controllers/WIMDController');
-
 	// The Routes
 	app.route('/drivers')
 		.get(WhereIsMyDriver.list_all_drivers);

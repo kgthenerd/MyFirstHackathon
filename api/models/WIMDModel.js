@@ -7,10 +7,10 @@ var LocationSchema = new Schema({
 		type: Number
 	},
 	latitude: {
-		type: Number,
+		type: Number
 	},
 	longitude: {
-		type: Number,
+		type: Number
 	},
 	radius: {
 		type: Number,
