@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    machine: true
+    working_directory: ~/MyFirstHackathon
     steps:
       - checkout
       - setup_remote_docker
