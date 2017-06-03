@@ -9,7 +9,7 @@ var port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 // For local deployment change this to mongoose.connect('mongodb://localhost/DriverDB');
-mongoose.connect('mongodb://database/DriverDB');
+mongoose.connect('mongodb://localhost/DriverDB');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
