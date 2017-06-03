@@ -69,4 +69,8 @@ typings/
 # Ignore docs/ folder
 docs/
 
+# Ignore gradle folder
+.gradle
+build/
+
 # End of https://www.gitignore.io/api/node
