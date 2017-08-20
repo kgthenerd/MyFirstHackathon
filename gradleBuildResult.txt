@@ -1,0 +1,97 @@
+:compileJava NO-SOURCE
+:processResources NO-SOURCE
+:classes UP-TO-DATE
+:jar UP-TO-DATE
+:assemble UP-TO-DATE
+:compileTestJava NO-SOURCE
+:processTestResources NO-SOURCE
+:testClasses UP-TO-DATE
+:composeUp
+Step 1/8 : FROM node:6
+ ---> 6a817046698d
+Step 2/8 : RUN mkdir -p /usr/src/app
+ ---> Using cache
+ ---> ce3547feb442
+Step 3/8 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> 480dbfecd7af
+Step 4/8 : COPY package.json /usr/src/app
+ ---> Using cache
+ ---> 0b865f151f4c
+Step 5/8 : RUN npm install
+ ---> Using cache
+ ---> 5ff8e31998fe
+Step 6/8 : COPY . /usr/src/app
+ ---> 8326838a0443
+Removing intermediate container 617ddddc257b
+Step 7/8 : EXPOSE 3000
+ ---> Running in dba462f4cf0b
+ ---> 396fe94ce9f3
+Removing intermediate container dba462f4cf0b
+Step 8/8 : CMD node index.js
+ ---> Running in c2652698ea7e
+ ---> 0099ef0ba0fc
+Removing intermediate container c2652698ea7e
+Successfully built 0099ef0ba0fc
+Successfully tagged whereismydriver_api:latest
+Step 1/3 : FROM mongo
+ ---> b39de1d79a53
+Step 2/3 : COPY namegen.csv /namegen.csv
+ ---> Using cache
+ ---> 5776029a71a9
+Step 3/3 : CMD mongoimport --host database -d DriverDB -c drivers --type csv --file /namegen.csv --headerline
+ ---> Using cache
+ ---> d022142a15ec
+Successfully built d022142a15ec
+Successfully tagged whereismydriver_database-seed:latest
+Step 1/3 : FROM whereismydriver_api:latest
+ ---> 0099ef0ba0fc
+Step 2/3 : WORKDIR /usr/src/app
+ ---> a70f1083e8dd
+Removing intermediate container 195b828e413c
+Step 3/3 : CMD npm test
+ ---> Running in f6583fe9cade
+ ---> 041f37b31d52
+Removing intermediate container f6583fe9cade
+Successfully built 041f37b31d52
+Successfully tagged whereismydriver_test:latest
+Will use localhost as host of database
+Will use localhost as host of api
+Will use localhost as host of database-seed
+Will use localhost as host of test
+Probing TCP socket on localhost:27017 of service 'database_1'
+TCP socket on localhost:27017 of service 'database_1' is ready
+Probing TCP socket on localhost:3000 of service 'api_1'
+TCP socket on localhost:3000 of service 'api_1' is ready
+:nodeSetup UP-TO-DATE
+:npmSetup UP-TO-DATE
+:testUnit
+
+> where-is-my-driver@1.0.0 test /Users/kop/Dev/WhereIsMyDriver
+> mocha --timeout 10000 --use_strict
+
+This RESTful API has started on:  3000
+
+
+  /GET drivers
+    ✓ it should GET all the available drivers around 500m
+
+  /POST drivers/location
+    ✓ it should not POST without lat and lon
+
+  /POST drivers/location
+    ✓ it should not POST with wrong lat and lon
+
+  /POST drivers/location
+    ✓ it should POST a record
+
+
+  4 passing (105ms)
+
+:test NO-SOURCE
+:composeDown
+:check UP-TO-DATE
+:build UP-TO-DATE
+
+BUILD SUCCESSFUL in 57s
+6 actionable tasks: 3 executed, 3 up-to-date
