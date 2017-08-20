@@ -5,12 +5,11 @@ buildscript {
     dependencies {
         classpath "com.avast.gradle:docker-compose-gradle-plugin:0.4.2"
         classpath "com.moowork.gradle:gradle-node-plugin:1.1.0"
-        classpath 'com.bmuschko:gradle-docker-plugin:3.0.7'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'docker-compose'
+apply plugin: "java"
+apply plugin: "docker-compose"
 apply plugin: "com.moowork.node"
 
 node {
@@ -64,21 +63,10 @@ task testUnit(type: NpmTask) {
     args = ['run', 'test']
 }
 
-task buildDockerImage(type: DockerBuildImage) {
-    dependsOn testUnit
-    if (System.env.DOCKER_HOST) {
-        url = "$System.env.DOCKER_HOST".replace("tcp","https")
-        if (System.env.DOCKER_CERT_PATH) {
-            certPath = new File(System.env.DOCKER_CERT_PATH)
-
-        }
-    }
-    else {
-        url = 'unix:///var/run/docker.sock'
-    }
-    inputDir = file('.')
-    //tag = 'mesos/elasticsearch-scheduler'
+task customTask() {
+  doLast {
+    println '>>>' + project(':jar').configurations.compile.dependencies
+  }
 }
 
 test.dependsOn testUnit
-build.dependsOn buildDockerImage

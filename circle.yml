@@ -3,7 +3,7 @@ jobs:
   machine:
     services:
       - docker
-      image: node:6
+      - image: node:6
     working_directory: ~/MyFirstHackathon
     steps:
       - checkout

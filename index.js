@@ -8,8 +8,12 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
-// For local deployment change this to mongoose.connect('mongodb://localhost/DriverDB');
-mongoose.connect('mongodb://localhost/DriverDB');
+if(process.env.NODE_ENV === 'test') {
+  mongoose.connect('mongodb://localhost/DriverDB');
+} else {
+  mongoose.connect('mongodb://database/DriverDB');
+}
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
